@@ -42,8 +42,11 @@ const client = new WebSocketClient({
   pingInterval: 10000,
 });
 
+let lastTimeUs = 0;
+
 client.handle(jetstreamPostCreateSchema, async ({ data }) => {
   try {
+    lastTimeUs = data.time_us;
     await redis.publish(CHANNEL, JSON.stringify(data));
   } catch (err) {
     log("error", "Failed to publish to Redis", err);
@@ -53,6 +56,13 @@ client.handle(jetstreamPostCreateSchema, async ({ data }) => {
 client.on("open", () => log("info", `Jetstream connected, publishing to channel "${CHANNEL}"`));
 client.on("error", (err) => log("error", "Jetstream error", err));
 client.on("reconnecting", (info) => log("info", "Jetstream reconnecting", info));
+
+client.on("close", () => {
+  if (lastTimeUs > 0) {
+    client.setParams({ cursor: lastTimeUs });
+    log("info", `Cursor set to ${lastTimeUs} for reconnection`);
+  }
+});
 
 client.connect();
 

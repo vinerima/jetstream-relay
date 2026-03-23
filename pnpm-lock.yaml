@@ -12,8 +12,8 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0(zod@4.3.6)
       '@vinerima/wah':
-        specifier: ^2.0.0
-        version: 2.0.0(ws@8.20.0)
+        specifier: 2.0.1
+        version: 2.0.1(ws@8.20.0)
       ioredis:
         specifier: ^5.10.1
         version: 5.10.1
@@ -70,8 +70,8 @@ packages:
     peerDependencies:
       zod: ^4.0.0
 
-  '@vinerima/wah@2.0.0':
-    resolution: {integrity: sha512-Rr6EusVoOXV/SiA73m/1rCqMWws2SF52yPpmbc6cq/E9zH9rafs6kwzmumtPsTAp5aW2v/B3BTuf2UQwnCTOyA==}
+  '@vinerima/wah@2.0.1':
+    resolution: {integrity: sha512-O2+3GB1js7zQyhnSyyT+fvWFGRps38MWo6Vqpav8gyh+ilrzigQJTUtwKFRmmWYF80/p5itPwv5VynPoUNDk7A==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       ws: ^8.19.0
@@ -219,7 +219,7 @@ snapshots:
     dependencies:
       zod: 4.3.6
 
-  '@vinerima/wah@2.0.0(ws@8.20.0)':
+  '@vinerima/wah@2.0.1(ws@8.20.0)':
     dependencies:
       zod: 4.3.6
     optionalDependencies:
