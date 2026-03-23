@@ -20,17 +20,53 @@ Connects to the [Bluesky Jetstream](https://docs.bsky.app/docs/advanced-guides/f
 | `REDIS_URL` | `redis://localhost:6379` | Redis connection string |
 | `REDIS_CHANNEL` | `jetstream:posts` | Pub/Sub channel name |
 
-## Usage
+## Running the relay
+
+### 1. Install dependencies
 
 ```bash
 pnpm install
+```
 
+### 2. Start Redis
+
+The relay requires a running Redis instance. If you don't have one, install and start it:
+
+```bash
+# macOS (Homebrew)
+brew install redis
+brew services start redis
+
+# or run in the foreground
+redis-server
+```
+
+```bash
+# Docker
+docker run -d --name redis -p 6379:6379 redis:7-alpine
+```
+
+To use a remote or non-default Redis instance, set `REDIS_URL`:
+
+```bash
+export REDIS_URL=redis://your-host:6379
+```
+
+### 3. Start the relay
+
+```bash
 # development
 pnpm start
 
-# build and run compiled output
+# production
 pnpm build
 node dist/index.js
+```
+
+You can verify events are flowing by subscribing to the channel in a separate terminal:
+
+```bash
+redis-cli SUBSCRIBE jetstream:posts
 ```
 
 ## Dependencies
