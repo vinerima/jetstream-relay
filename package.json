@@ -1,0 +1,23 @@
+{
+  "name": "jetstream-relay",
+  "version": "1.0.0",
+  "description": "Connects to Bluesky Jetstream and publishes events to Redis for fan-out to multiple consumers.",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "build": "tsc"
+  },
+  "author": "vinerima <vinerima@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@vinerima/jetstream-types": "^1.0.0",
+    "@vinerima/wah": "^2.0.0",
+    "ioredis": "^5.10.1",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}
